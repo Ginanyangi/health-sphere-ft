@@ -2,6 +2,7 @@ import React from 'react';
 import DashboardOverview from './DashboardOverview';
 import UserManagement from './UserManagement';
 import FacilityManagement from './FacilityManagement';
+import ContactMessages from './ContactMessages';
 
 const AdminDashboard = () => {
   return (
@@ -11,6 +12,7 @@ const AdminDashboard = () => {
         <DashboardOverview />
         <UserManagement />
         <FacilityManagement />
+        <ContactMessages />
       </div>
     </div>
   );

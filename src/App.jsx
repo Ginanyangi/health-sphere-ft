@@ -11,6 +11,7 @@ import PlacesMap from './components/Places';
 import AdminDashboard from './components/AdminDashboard';
 import ContactForm from './components/Contact';
 import PrivateRoute from './components/PrivateRoute';
+import Footer from './components/Footer';
 
 const App =()=> {
   return (
@@ -58,6 +59,9 @@ const App =()=> {
           }
         />
         </Routes>
+       </div>
+       <div>
+        <Footer />
        </div>
     </Router>
   );
