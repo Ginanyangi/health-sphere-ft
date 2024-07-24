@@ -7,11 +7,13 @@ import Navbar from './components/Navbar';
 import BookingForm from './components/Booking';
 import PrescriptionForm from './components/Prescription';
 import Home from './components/Home';
-import PlacesMap from './components/Places';
+// import PlacesMap from './components/Places';
+import Facilities from './components/Facilities';
 import AdminDashboard from './components/AdminDashboard';
 import ContactForm from './components/Contact';
 import PrivateRoute from './components/PrivateRoute';
 import Footer from './components/Footer';
+
 
 const App =()=> {
   return (
@@ -22,7 +24,8 @@ const App =()=> {
           
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/facilities" element={<Facilities />} />
           <Route path="/password-reset" element={<PasswordReset />} />
           {/* <Route path="/booking" element={<BookingForm />} />
           <Route path="/prescription" element={<PrescriptionForm />} />

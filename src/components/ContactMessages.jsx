@@ -24,31 +24,29 @@ const ContactMessages = () => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
-      <h2 className="text-lg font-semibold mb-2">Contact Messages</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white">
-          <thead>
-            <tr className="bg-gray-100 text-gray-600 text-sm leading-normal">
-              <th className="py-3 px-6 text-left">Name</th>
-              <th className="py-3 px-6 text-left">Email</th>
-              <th className="py-3 px-6 text-left">Message</th>
-              
+    <div className="bg-white rounded-lg shadow-md p-6">
+    <h2 className="text-xl font-semibold mb-4 text-gray-900">Contact Messages</h2>
+    <div className="overflow-x-auto">
+      <table className="min-w-full bg-white border border-gray-200">
+        <thead>
+          <tr className="bg-gray-100 text-gray-600 text-sm leading-normal">
+            <th className="py-3 px-6 text-left">Name</th>
+            <th className="py-3 px-6 text-left">Email</th>
+            <th className="py-3 px-6 text-left">Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          {messages.map((message) => (
+            <tr key={message.id} className="border-b border-gray-200 hover:bg-gray-100">
+              <td className="py-3 px-6 text-left">{message.name}</td>
+              <td className="py-3 px-6 text-left">{message.email}</td>
+              <td className="py-3 px-6 text-left">{message.message}</td>
             </tr>
-          </thead>
-          <tbody>
-            {messages.map((message) => (
-              <tr key={message.id}>
-                <td className="py-3 px-6 text-left">{message.name}</td>
-                <td className="py-3 px-6 text-left">{message.email}</td>
-                <td className="py-3 px-6 text-left">{message.message}</td>
-                
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
+  </div>
   );
 };
 

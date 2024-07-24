@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const{ login } = useAuth();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,9 +20,12 @@ const Login = () => {
       // Store token in local storage
       localStorage.setItem('authToken', response.data.access);
       
+      login();
+
       navigate('/home');
     } catch (error) {
       console.error('Error logging in:', error.response?.data || error.message);
+      setError('Invalid username or password');
     }
   };
 

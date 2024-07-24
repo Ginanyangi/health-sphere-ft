@@ -2,7 +2,7 @@ import React from 'react';
 
 const DashboardOverview = () => {
   // Fetch data or use dummy data for overview metrics
-  const userCount = 10; // Replace with actual data fetch
+  const userCount = 15; // Replace with actual data fetch
   const facilityCount = 10; // Replace with actual data fetch
 
   return (
