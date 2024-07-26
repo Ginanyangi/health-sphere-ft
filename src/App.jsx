@@ -24,7 +24,7 @@ const App =()=> {
           
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/password-reset" element={<PasswordReset />} />
           {/* <Route path="/booking" element={<BookingForm />} />

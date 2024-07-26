@@ -30,7 +30,7 @@ const AdminDashboard = () => {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <aside className={`w-64 bg-gray-800 text-white h-full p-4 ${isSidebarOpen ? 'block' : 'hidden'} md:block`}>
+      <aside className={`fixed left-0 top-0 w-64 bg-gray-800 text-white h-full p-4 ${isSidebarOpen ? 'block' : 'hidden'} md:block`}>
         <button
           className="text-white md:hidden mb-4"
           onClick={() => setSidebarOpen(!isSidebarOpen)}
