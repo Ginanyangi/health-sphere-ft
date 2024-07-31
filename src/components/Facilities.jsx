@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import BASE_URL from '../../config';
 
-
-
+console.log('Hello');
+console.log(BASE_URL);
 const Facilities = () => {
   const [facilities, setFacilities] = useState([]);
   const [error, setError] = useState('');

@@ -1,2 +1,3 @@
-const BASE_URL = meta.env.REACT_APP_BASE_URL;
+const BASE_URL = "https://health-sphere.onrender.com";
+
 export default BASE_URL;
