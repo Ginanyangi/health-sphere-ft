@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const BASE_URL= process.env.REACT_APP_BASE_URL;
+
 const BookingManagement = () => {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState('');
@@ -8,7 +10,7 @@ const BookingManagement = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/bookings/');
+        const response = await axios.get(`${BASE_URL}/api/bookings/`);
         setBookings(response.data);
       } catch (error) {
         console.error('Error fetching bookings:', error);

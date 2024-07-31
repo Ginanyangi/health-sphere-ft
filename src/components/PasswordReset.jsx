@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const BASE_URL=process.env.REACT_APP_BASE_URL;
+
 const PasswordReset= () =>{
   const [email, setEmail] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/accounts/password-reset/', {
+      const response = await axios.post(`${BASE_URL}/api/accounts/password-reset/`, {
         email,
       });
       console.log('Password reset email sent:', response.data);

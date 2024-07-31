@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const BASE_URL=process.env.REACT_APP_BASE_URL;
+
 const ContactMessages = () => {
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState('');
@@ -8,7 +10,7 @@ const ContactMessages = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/accounts/contact/');
+        const response = await axios.get(`${BASE_URL}/api/accounts/contact/`);
         setMessages(response.data);
       } catch (error) {
         setError('Error fetching contact messages.');

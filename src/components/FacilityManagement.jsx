@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const BASE_URL= process.env.REACT_APP_BASE_URL;
+
 const FacilityManagement = () => {
   const [facilities, setFacilities] = useState([]);
   const [error, setError] = useState('');
@@ -8,7 +10,7 @@ const FacilityManagement = () => {
   useEffect(() => {
     const fetchFacilities = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/facilities/');
+        const response = await axios.get(`${BASE_URL}/api/facilities/`);
         console.log('Response:', response); 
         setFacilities(response.data);
       } catch (error) {
@@ -22,7 +24,7 @@ const FacilityManagement = () => {
 
   const handleDelete = async (facilityId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/facilities/${facilityId}/`);
+      await axios.delete(`${BASE_URL}/api/facilities/${facilityId}/`);
       // Update the state after successful deletion
       setFacilities(prevFacilities => prevFacilities.filter(f => f.id !== facilityId));
     } catch (error) {

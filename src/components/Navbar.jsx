@@ -8,7 +8,7 @@ const Navbar = () => {
     const { isAuthenticated, logout} = useAuth();
   
     return (
-      <nav className="bg-blue-500 py-4">
+      <nav className="bg-blue-500 py-4 {`bg-${theme === 'light' ? 'blue-500' : 'gray-800'}">
       <div className="container mx-auto flex justify-between items-center text-white px-4">
         <div className="flex items-center">
           <div className="text-3xl font-bold tracking-wide">HS</div>
@@ -41,6 +41,9 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/facilities" className="text-white hover:text-blue-300">Facilities</Link>
+            </li>
+            <li>
+              <Link to="/search" className="text-white hover:text-blue-300">Search</Link>
             </li>
           </ul>
         </div>

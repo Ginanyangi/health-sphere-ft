@@ -1,60 +1,81 @@
-import React, { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const containerStyle = {
-  width: '100%',
-  height: '400px'
-};
-
-const center = {
-  lat: 1.2921,
-  lng: 36.8219
-};
-
-const PlacesMap = () => {
+const FacilitySearch = () => {
+  const [query, setQuery] = useState('');
   const [places, setPlaces] = useState([]);
-  
-  useEffect(() => {
-    const fetchPlaces = async () => {
-      const location = new window.google.maps.LatLng(center.lat, center.lng);
-      const map = new window.google.maps.Map(document.createElement('div'), {
-        center: location,
-        zoom: 15
-      });
-      const service = new window.google.maps.places.PlacesService(map);
-      const request = {
-        location: location,
-        radius: '5000',
-        type: ['hospital', 'pharmacy']
-      };
-      
-      service.nearbySearch(request, (results, status) => {
-        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-          setPlaces(results);
-        }
-      });
-    };
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    fetchPlaces();
-  }, []);
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const apiKey = process.env.GOOGLE_API_KEY;
+    const location = '1.2921,36.8219'; // Default location if no query provided
+    const radius = '5000';
+    const type = ['hospital','pharmacy','clinic'];
+
+    try {
+      const results = await Promise.all(
+        types.map(async (type) => {
+          const response = await axios.get(
+            `https://maps.googleapis.com/maps/api/place/nearbysearch/json`, {
+              params: {
+                location,
+                radius,
+                type,
+                keyword: query,
+                key: apiKey
+              }
+            }
+          );
+          if (response.data.status === 'OK') {
+            return response.data.results;
+          } else {
+            throw new Error(response.data.status);
+          }
+        })
+      );
+      setPlaces(results.flat());
+    } catch (error) {
+      setError('Error fetching places. Please try again later.');
+      console.error('Error fetching places:', error);
+    }
+
+    setLoading(false);
+  };
 
   return (
-    <LoadScript googleMapsApiKey= {config("GOOGLE_API_KEY")} libraries={['places']}>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-      >
-        {places.map(place => (
-          <Marker
-            key={place.place_id}
-            position={{ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }}
-            title={place.name}
-          />
+    <div className="max-w-2xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Search for Healthcare Facilities</h1>
+      <form onSubmit={handleSearch} className="mb-4">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-full p-2 border rounded"
+          placeholder="Enter location or facility name"
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white p-2 rounded mt-2"
+        >
+          Search
+        </button>
+      </form>
+      {loading && <p>Loading...</p>}
+      <ul>
+        {places.map((place) => (
+          <li key={place.place_id} className="p-4 border-b">
+            <h2 className="text-xl font-semibold">{place.name}</h2>
+            <p>{place.vicinity}</p>
+          </li>
         ))}
-      </GoogleMap>
-    </LoadScript>
+      </ul>
+    </div>
   );
 };
 
-export default PlacesMap;
+export default FacilitySearch;

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const Register = () => {
   const [username, setUsername] = useState('');
   const [fullName, setFullName] = useState('');
@@ -18,7 +20,7 @@ const Register = () => {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.post('http://localhost:8000/api/accounts/register/', {
+      const response = await axios.post(`${BASE_URL}/api/accounts/register/`, {
         username,
         full_name: fullName,
         role,

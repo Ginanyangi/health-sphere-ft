@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useTheme } from './ThemeContext';
+
+const BASE_URL= process.env.REACT_APP_BASE_URL;
 
 const ContactForm = () => {
+  const { theme } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,7 +26,7 @@ const ContactForm = () => {
     try {
       const accessToken = localStorage.getItem('authToken'); // Assuming token is stored in localStorage
       const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
-      await axios.post('http://localhost:8000/api/accounts/contact/', formData, { headers });
+      await axios.post(`${BASE_URL}/api/accounts/contact/`, formData, { headers });
       setResponseMessage('Message sent successfully!');
       setFormData({ name: '', email: '', message: '' }); // Reset form data
     } catch (error) {

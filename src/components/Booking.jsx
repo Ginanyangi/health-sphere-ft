@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useTheme } from './ThemeContext';
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const BookingForm = () => {
   const [facility, setFacility] = useState('');
   const [appointmentTime, setAppointmentTime] = useState('');
   const [reason, setReason] = useState('');
+  const { theme } = useTheme();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/bookings/', {
+      const response = await axios.post(`${BASE_URL}/api/bookings/`, {
         facility,
         appointment_time: appointmentTime,
         reason,

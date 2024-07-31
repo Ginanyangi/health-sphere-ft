@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const PrescriptionForm = () => {
   const [medication, setMedication] = useState('');
   const [dosage, setDosage] = useState('');
@@ -9,7 +11,7 @@ const PrescriptionForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/prescriptions/', {
+      const response = await axios.post(`${BASE_URL}/api/prescriptions/`, {
         medication,
         dosage,
         frequency,

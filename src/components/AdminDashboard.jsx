@@ -4,9 +4,10 @@ import UserManagement from './UserManagement';
 import FacilityManagement from './FacilityManagement';
 import ContactMessages from './ContactMessages';
 import BookingManagement from './BookingManagement';
-
+// import { useTheme } from '.ThemeContext';
 
 const AdminDashboard = () => {
+  
   const [activeSection, setActiveSection] = useState('overview');
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
@@ -30,7 +31,11 @@ const AdminDashboard = () => {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <aside className={`fixed left-0 top-0 w-64 bg-gray-800 text-white h-full p-4 ${isSidebarOpen ? 'block' : 'hidden'} md:block`}>
+      <aside
+        className={`fixed left-0 top-0 w-64 bg-gray-800 text-white h-full p-4 transition-transform duration-300 transform ${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        } md:relative md:translate-x-0`}
+      >
         <button
           className="text-white md:hidden mb-4"
           onClick={() => setSidebarOpen(!isSidebarOpen)}
@@ -49,7 +54,9 @@ const AdminDashboard = () => {
         <ul className="space-y-2">
           <li>
             <button
-              className={`w-full text-left px-4 py-2 rounded hover:bg-gray-700 ${activeSection === 'overview' ? 'bg-gray-700' : ''}`}
+              className={`w-full text-left px-4 py-2 rounded hover:bg-gray-700 ${
+                activeSection === 'overview' ? 'bg-gray-700' : ''
+              }`}
               onClick={() => setActiveSection('overview')}
             >
               Dashboard Overview
@@ -57,7 +64,9 @@ const AdminDashboard = () => {
           </li>
           <li>
             <button
-              className={`w-full text-left px-4 py-2 rounded hover:bg-gray-700 ${activeSection === 'users' ? 'bg-gray-700' : ''}`}
+              className={`w-full text-left px-4 py-2 rounded hover:bg-gray-700 ${
+                activeSection === 'users' ? 'bg-gray-700' : ''
+              }`}
               onClick={() => setActiveSection('users')}
             >
               User Management
@@ -65,7 +74,9 @@ const AdminDashboard = () => {
           </li>
           <li>
             <button
-              className={`w-full text-left px-4 py-2 rounded hover:bg-gray-700 ${activeSection === 'facilities' ? 'bg-gray-700' : ''}`}
+              className={`w-full text-left px-4 py-2 rounded hover:bg-gray-700 ${
+                activeSection === 'facilities' ? 'bg-gray-700' : ''
+              }`}
               onClick={() => setActiveSection('facilities')}
             >
               Facility Management
@@ -73,7 +84,9 @@ const AdminDashboard = () => {
           </li>
           <li>
             <button
-              className={`w-full text-left px-4 py-2 rounded hover:bg-gray-700 ${activeSection === 'bookings' ? 'bg-gray-700' : ''}`}
+              className={`w-full text-left px-4 py-2 rounded hover:bg-gray-700 ${
+                activeSection === 'bookings' ? 'bg-gray-700' : ''
+              }`}
               onClick={() => setActiveSection('bookings')}
             >
               Booking Management
@@ -81,7 +94,9 @@ const AdminDashboard = () => {
           </li>
           <li>
             <button
-              className={`w-full text-left px-4 py-2 rounded hover:bg-gray-700 ${activeSection === 'contacts' ? 'bg-gray-700' : ''}`}
+              className={`w-full text-left px-4 py-2 rounded hover:bg-gray-700 ${
+                activeSection === 'contacts' ? 'bg-gray-700' : ''
+              }`}
               onClick={() => setActiveSection('contacts')}
             >
               Contact Messages
@@ -91,7 +106,11 @@ const AdminDashboard = () => {
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 p-4 bg-gray-100">
+      <main
+        className={`flex-1 p-4 bg-gray-100 transition-transform duration-300 transform ${
+          isSidebarOpen ? 'ml-64' : 'ml-0'
+        }`}
+      >
         {renderContent()}
       </main>
     </div>

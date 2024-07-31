@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const BASE_URL = process.env.BASE_URL;
+
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState('');
@@ -11,7 +13,7 @@ const UserManagement = () => {
         const accessToken = localStorage.getItem('authToken'); // Assuming token is stored in localStorage
         const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
 
-        const response = await axios.get('http://localhost:8000/api/accounts/users/', {
+        const response = await axios.get(`${BASE_URL}/api/accounts/users/`, {
           headers,
           withCredentials: true
         });
