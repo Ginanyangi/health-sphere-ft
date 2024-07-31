@@ -2,7 +2,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+import BASE_URL from '../../config';
+
+
 
 const Register = () => {
   const [username, setUsername] = useState('');

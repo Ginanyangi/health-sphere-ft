@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+import BASE_URL from '../../config';
+
+
 
 const PrescriptionForm = () => {
   const [medication, setMedication] = useState('');

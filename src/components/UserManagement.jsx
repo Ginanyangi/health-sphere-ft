@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const BASE_URL = process.env.BASE_URL;
+import BASE_URL from '../../config';
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);

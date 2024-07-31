@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useTheme } from './ThemeContext';
+import BASE_URL from '../../config';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 
 const BookingForm = () => {
   const [facility, setFacility] = useState('');

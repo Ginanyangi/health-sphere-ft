@@ -2,8 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
+import BASE_URL from '../../config';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Login = () => {
   const [username, setUsername] = useState('');

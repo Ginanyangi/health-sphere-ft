@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../../config';
 
-const BASE_URL=process.env.REACT_APP_BASE_URL;
+
 
 const ContactMessages = () => {
   const [messages, setMessages] = useState([]);
