@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { GOOGLE_API_KEY } from '../../config';
 
 const FacilitySearch = () => {
   const [query, setQuery] = useState('');
@@ -12,10 +13,10 @@ const FacilitySearch = () => {
     setLoading(true);
     setError(null);
 
-    const apiKey = process.env.GOOGLE_API_KEY;
+    
     const location = '1.2921,36.8219'; // Default location if no query provided
     const radius = '5000';
-    const type = ['hospital','pharmacy','clinic'];
+    const types = ['hospital','pharmacy','clinic'];
 
     try {
       const results = await Promise.all(
@@ -27,7 +28,7 @@ const FacilitySearch = () => {
                 radius,
                 type,
                 keyword: query,
-                key: apiKey
+                key: GOOGLE_API_KEY
               }
             }
           );

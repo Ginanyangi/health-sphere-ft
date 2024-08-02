@@ -38,7 +38,8 @@ const FacilityManagement = () => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+  <div className="flex-1 p-4 bg-gray-100">
+    <div className="bg-white rounded-lg shadow-md p-4 overflow-auto max-w-full">
     <h2 className="text-xl font-semibold mb-4 text-gray-900">Facility Management</h2>
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white border border-gray-200">
@@ -78,6 +79,7 @@ const FacilityManagement = () => {
       </table>
     </div>
   </div>
+</div>
   );
 };
 
